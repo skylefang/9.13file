@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prototype</title>
+</head>
+<body>
+	<script>
+		// prototype 原型对象 
+		function Person(){
+			this.name='zhangsan';
+			this.age=18;
+			this.sex='nan';
+		}
+		// 添加prototype的两个方法
+		// 1.类似于json的写法
+		Person.prototype={
+            sleep:function(){
+            	alert('睡觉');
+            },
+            study:function(){
+            	alert('学习');
+            },
+            say:function(){
+            	alert(this.name);
+            },
+            play:function(){
+            	alert(`${this.name}玩儿`);
+            },
+		}
+		// 2.单独添加
+		Person.prototype.eat=function(){
+			alert('eat');
+		}
+		let zhangsan=new Person();
+		let lisi=new Person();
+		zhangsan.say();
+		lisi.play();
+		zhangsan.eat();
+
+		
+		// 删除对象的属性和方法用 delete 只是在构造函数中
+		delete zhangsan.sex;
+		alert(zhangsan.sex);
+		// 删除一个对象 直接让对象等于null
+		/*zhangsan=null;
+		console.log(zhangsan);*/
+		// instanceof 判断对象是从哪个构造函数中实例化出来的，值为true和false
+		console.log(zhangsan instanceof Person);
+		 
+	</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>继承</title>
+</head>
+<body>
+	<script>
+		// 继承 是某个对象可以拥有其他对象的一些属性和方法
+		function Person(){
+			this.name='person';
+			this.age=20;
+			this.sex='nv';
+			this.eat=function(){
+				alert('吃饭');
+			}
+			this.sleep=function(){
+				alert('睡觉');
+			}
+			this.game=function(){
+				alert('打豆豆');
+			}
+		}
+		
+		function Student(){
+			this.classes='wuif1707-1';
+			this.number='wuif1707001';
+			this.skill=function(){
+				alert('fullStuck');
+			}
+			this.aa=function(){
+				alert('student构造函数的aa');
+			}
+		}
+        Student.prototype=new Person();
+        Student.prototype.aa=function(){
+        	alert('student原型的aa');
+        }
+
+        let lisi=new Student();
+        console.log(lisi);
+        lisi.aa();
+        lisi.game();
+        console.log(lisi.__proto__==Student.prototype);
+        console.log(Student.prototype.__proto__==Person.prototype);
+        console.log(Person.prototype.__proto__==Object.prototype);
+        console.log(Object.prototype.__proto__==null);
+       
+
+        
+
+
+		/*let zhangsan=new Person();
+		let lisi=new Student();
+		Student.prototype=new Person(); //使Student中也有Person的属性和方法，来实现继承
+		console.log(lisi);
+		// lisi.skill();*/
+	</script>
+</body>
+</html>

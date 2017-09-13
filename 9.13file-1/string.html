@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>string</title>
+</head>
+<body>
+	<script>
+	    // #String
+	    // ## 属性
+	    let str2 = 'ab王者荣耀cd';
+	    // 1.length 返回字符串的长度 只读属性，不区分中英文都只占一个字符，只能用来获取，不能修改；
+	    console.log(str2.length);
+	    // 2.constructor 返回构造函数
+	    console.log(str2.constructor);
+
+        // ## 方法
+	    // ### 查找
+		let str = 'ab王者荣耀cd';
+		// 1.charAt 用来返回指定位置的字符
+		let char = str.charAt(2);
+		console.log(char);
+        // 2.charCodeAt() 用来返回制定位置字符所对应的Unicode编码
+        let char1 = str.charCodeAt(1);
+        console.log(char1);
+        // 3.fromCharCode()  返回Unicode编码所对应的字符串 
+        let char2 = String.fromCharCode(100); 
+        console.log(char2); 
+
+        // ### 位置
+        let str3 = 'abcdabcd';
+        // 1.indexOf 
+        console.log(str3.indexOf('abcd'));     // 0
+        console.log(str3.indexOf('abcf'));     // -1
+
+        // 2.lastIndexOf
+        console.log(str3.lastIndexOf('abcd'));  // 4
+        console.log(str3.lastIndexOf('abce'));  // -1
+
+        // ### 存在
+        // includes()
+        console.log(str3.includes('ab'));     // true
+
+        // ### 截取 对原字符串没有影响
+        // 1.slice()
+        console.log(str3.slice(0,3));      // abc
+        console.log(str3.slice(0,-2));     // abcdab
+        console.log(str3.slice(2));        // cdabcd
+        // 2.substring()  用法与slice相同，只是不支持负数
+        console.log(str3.slice(0,3));
+        console.log(str3.slice(2)); 
+        // 3.substr()
+        console.log(str3.substr(2,3))      // cda
+
+        // ### 替换 replace 只替换第一次的，对原字符串没有影响
+        console.log(str3.replace('abcd','****'));
+        console.log(str3);
+        // 例子： replaceAll
+        let str1 = 'abcdabcd'
+        replaceAll(str1,'cd');
+        function replaceAll(str1,rStr){
+        	// let star='';
+        	// for(let i=0;i<rStr.length;i++){
+        	// 	star+='*';
+        	// }
+        	let star = '*'.repeat(rStr.length);
+        	while(str1.indexOf(rStr)!=-1){
+        		str1=str1.replace(rStr,star);
+        	}
+        	return str1;
+        }
+        console.log(replaceAll(str1,'cd'));
+
+        // ### 重复 repeat
+        let str4 = 'abcd'
+        console.log(str4.repeat(3));
+
+        // ### match 匹配
+        console.log(str4.match('ab'));
+
+        // ### trim 去空
+        let str5 = "   a,b,c,c   ";
+        console.log(str5.trim());
+        
+        // ### 转换
+        // 1.split 拆分
+        let str6 = 'a-b-c-d';
+        console.log(str6.split('-'));
+        let str7='a,b,c,d';
+        console.log(str7.split());
+        // 2.toUpperCase 转换成大写
+        let str8 = 'abcde';
+        console.log(str8.toUpperCase());
+        // 3.toLowerCase 转换成小写
+        let str9 = 'ABCDEF';
+        console.log(str9.toLowerCase());
+
+
+        // string 例子
+        let url = 'http://www.baidu.comhttp://www.baidu.comhttp://www.baidu.comhttp://www.baidu.comhttp://www.baidu.comhttp://www.baidu.comhttp://www.baidu.comhttp://www.baidu.comhttp://www.baidu.comhttp://www.baidu.comhttp://www.baidu.comhttp://www.baidu.comhttp://www.baidu.comhttp://www.baidu.com';
+        repeatAll(url,'baidu');
+        function repeatAll(url,rStr){
+        	let arr=[];
+        	let star = '*'.repeat(rStr.length);
+            while(url.includes(rStr)){
+            	arr.push(url.indexOf(rStr))
+                url=url.replace(rStr,star);               
+            }
+            return arr;
+        } 
+        console.log(repeatAll(url,'baidu'));
+        // 方法二
+        function position(url,rStr){
+        	let newarr=[];
+        	for(let i=0;i<url.length;i++){
+        		if(url.substr(i,5)==rStr){
+                   newarr.push (i);
+        		}
+        		
+        	}
+        	return newarr;
+        }
+        console.log( position(url,'baidu'));
+	</script>
+</body>
+</html>
